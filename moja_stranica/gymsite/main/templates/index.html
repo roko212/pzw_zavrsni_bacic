@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TeamGym</title>
+</head>
+<body>
+
+{% if user.is_authenticated %}
+    <h2>Pozdrav, {{ user.username }}</h2>
+
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+{% else %}
+    <h2>Niste prijavljeni</h2>
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'main:register' %}">Registracija</a>
+{% endif %}
+
+
+</body>
+</html>

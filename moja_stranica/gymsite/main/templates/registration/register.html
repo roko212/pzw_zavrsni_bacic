@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registracija</title>
+</head>
+<body>
+
+<h2>Registracija</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Registriraj se</button>
+</form>
+
+<a href="{% url 'main:index' %}">Natrag na naslovnicu</a>
+
+</body>
+</html>
