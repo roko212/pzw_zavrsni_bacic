@@ -8,6 +8,16 @@
 {% if user.is_authenticated %}
     <h2>Pozdrav, {{ user.username }}</h2>
 
+    <form method="post" action="{% url 'main:korisnici' %}" style="display:inline-block;">
+        {% csrf_token %}
+        <button type="submit">Korisnici</button>
+    </form>
+
+    <form method="post" action="{% url 'main:treneri' %}" style="display:inline-block;">
+        {% csrf_token %}
+        <button type="submit">Treneri</button>
+    </form> 
+
     <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}
         <button type="submit">Logout</button>

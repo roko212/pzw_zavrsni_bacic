@@ -1,0 +1,11 @@
+<ul>
+    <h2>Treneri</h2>
+    {% for t in treneri %}
+    <li>
+        Ime: {{t.trener_ime}}<br>
+        Id: {{t.trener_id}}<br>
+    </li>
+    {% empty %}
+        <li>Nema registriranih trenera.</li>
+    {% endfor %}
+</ul>

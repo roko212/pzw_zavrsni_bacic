@@ -1,0 +1,13 @@
+<ul>
+    <h2>Korisnici</h2>
+    {% for k in korisnici %}
+    <li>
+        Ime: {{k.korisnik_ime}}<br>
+        Datum rodenja: {{k.korisnik_datum_rodenja}}<br>
+        Id: {{k.korisnik_datum_rodenja}}<br>
+        e-mail: {{k.korisnik_mail}}<br>
+    </li>
+    {% empty %}
+        <li>Nema registriranih korisnika.</li>
+    {% endfor %}
+</ul>

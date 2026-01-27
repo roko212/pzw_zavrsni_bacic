@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
+from main.models import Trener, Korisnik
 
 # Create your views here.
 def homepage(request):
@@ -29,3 +30,17 @@ def register(request):
     context = {'form': form}
 
     return render(request, 'registration/register.html', context)
+
+def svi_treneri(request):
+    treneri = Trener.objects.all()
+
+    context = {'treneri': treneri}
+
+    return render(request, 'treneri.html', context=context)
+
+def svi_korisnici(request):
+    korisnici = Korisnik.objects.all()
+
+    context = {'korisnici': korisnici}
+
+    return render(request, 'korisnici.html', context=context)
