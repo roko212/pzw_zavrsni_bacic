@@ -1,0 +1,16 @@
+<ul>
+    <h2>Treninzi</h2>
+    {% for t in treninzi %}
+    <li>
+        Trening: {{t.trening_ime}}<br>
+        Vrsta: {{t.trening_vrsta}}<br>
+        Opis: {{t.trening_opis}}<br>
+        Trener: {{t.trening_trener}}<br>
+        Termin: {{t.trening_termin}}<br>
+    </li>
+    {% empty %}
+        <li>Nema dodanih treninga.</li>
+    {% endfor %}
+</ul>
+
+<button onclick="history.back()">Nazad</button>

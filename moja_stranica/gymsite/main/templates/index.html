@@ -16,9 +16,15 @@
     <form method="post" action="{% url 'main:treneri' %}" style="display:inline-block;">
         {% csrf_token %}
         <button type="submit">Treneri</button>
-    </form> 
+    </form>
 
-    <form method="post" action="{% url 'logout' %}">
+    <form method="post" action="{% url 'main:treninzi' %}" style="display:inline-block;">
+        {% csrf_token %}
+        <button type="submit">Treninzi</button>
+    </form> 
+    
+
+    <form method="post" action="{% url 'logout' %}" style="margin-top: 50px">
         {% csrf_token %}
         <button type="submit">Logout</button>
     </form>

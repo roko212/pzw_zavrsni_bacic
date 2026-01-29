@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
-from main.models import Trener, Korisnik
+from main.models import Trener, Korisnik, Trening
 
 # Create your views here.
 def homepage(request):
@@ -44,3 +44,11 @@ def svi_korisnici(request):
     context = {'korisnici': korisnici}
 
     return render(request, 'korisnici.html', context=context)
+
+
+def svi_treninzi(request):
+    treninzi = Trening.objects.all()
+
+    context = {'treninzi': treninzi}
+
+    return render(request, 'treninzi.html', context=context)

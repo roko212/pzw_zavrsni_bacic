@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
@@ -23,3 +24,4 @@ class Trening(models.Model):
     trening_vrsta = models.CharField(max_length=20)
     trening_opis = models.TextField()
     trening_trener = models.ForeignKey(Trener, on_delete=models.CASCADE)
+    trening_termin = models.DateTimeField(default=timezone.now)

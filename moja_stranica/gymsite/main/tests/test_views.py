@@ -6,27 +6,31 @@ class TestViews(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.homepage_url = reverse('homepage')
-        self.treneri_q_url = reverse('trener_q', args=['neki-trener'])
+        self.homepage_url = reverse('main:index')
+        self.treneri_q_url = reverse('main:treneri')
 
         self.trener1 = Trener.objects.create(
             trener_ime = "neki-trener",
             trener_id = "TestniId"
         )
 
-    def test_project_homepage_GET(self):
+    def test_project_index_GET(self):
         client = Client()
 
         response = client.get(self.homepage_url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'base_generic.html')
+        self.assertTemplateUsed(response, 'index.html')
 
-    def test_project_authors_GET(self):
+    def test_project_korisnici_GET(self):
         client = Client()
 
         response = client.get(self.treneri_q_url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, '')
+        self.assertTemplateUsed(response, 'treneri.html')
+
+
+
+    
 

@@ -3,14 +3,16 @@ import random
 from django.db import transaction
 from django.core.management.base import BaseCommand
 
-from main.models import Korisnik, Trener
+from main.models import Korisnik, Trener, Trening
 from main.factories import (
     KorisnikFactory,
-    TrenerFactory
+    TrenerFactory,
+    TreningFactory
 )
 
 NUM_KORISNICI = 10
 NUM_TRENERI = 10
+NUM_TRENINZI = 10
 
 class Command(BaseCommand):
     help = "Generates test data"
@@ -18,7 +20,7 @@ class Command(BaseCommand):
     @transaction.atomic
     def handle(self, *args, **kwargs):
         self.stdout.write("Deleting old data...")
-        models = [Korisnik, Trener]
+        models = [Korisnik, Trener, Trening]
         for m in models:
             m.objects.all().delete()
 
@@ -29,3 +31,6 @@ class Command(BaseCommand):
 
         for _ in range(NUM_TRENERI):
             trener = TrenerFactory()
+
+        for _ in range(NUM_TRENINZI):
+            trening = TreningFactory()

@@ -19,3 +19,16 @@ class TrenerFactory(DjangoModelFactory):
 
     trener_ime = factory.Faker("first_name")
     trener_id = factory.Faker("random_int")
+
+class TreningFactory(DjangoModelFactory):
+    class Meta:
+        model = Trening
+
+    trening_ime = factory.Faker("word")
+    trening_vrsta = factory.Faker(
+        "random_element",
+        elements=["kardio", "snaga", "funkcionalni", "yoga", "HIIT"]
+    )
+    trening_opis = factory.Faker("paragraph", nb_sentences=3)
+    trening_trener = factory.SubFactory(TrenerFactory)
+    trening_termin = factory.Faker('date_time')
