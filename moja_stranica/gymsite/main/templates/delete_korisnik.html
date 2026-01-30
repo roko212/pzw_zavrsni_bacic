@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Obrisi korisnika</title>
+</head>
+<body>
+    <h1>Obrisi korisnika</h1>
+    <p>Zelite li sigurno obrisati korisnika "{{ object }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Confirm Delete">
+    </form>
+</body>
+</html>

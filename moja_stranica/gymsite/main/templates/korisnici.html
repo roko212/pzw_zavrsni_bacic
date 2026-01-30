@@ -1,11 +1,15 @@
+<head>
+    <title>Lista korisnika</title>
+</head>
 <ul>
     <h2>Korisnici</h2>
     {% for k in korisnici %}
     <li>
         Ime: {{k.korisnik_ime}}<br>
         Datum rodenja: {{k.korisnik_datum_rodenja}}<br>
-        Id: {{k.korisnik_datum_rodenja}}<br>
         e-mail: {{k.korisnik_mail}}<br>
+        <a href="{% url 'main:update_korisnika' k.pk %}">Update</a>
+        <a href="{% url 'main:obrisi_korisnika' k.pk %}">Delete</a>
     </li>
     {% empty %}
         <li>Nema registriranih korisnika.</li>
@@ -13,3 +17,8 @@
 </ul>
 
 <button onclick="history.back()">Nazad</button>
+
+<form method="post" action="{% url 'main:dodaj_korisnika' %}" style="display:inline-block;">
+        {% csrf_token %}
+        <button type="submit">Dodaj korisnika</button>
+    </form>

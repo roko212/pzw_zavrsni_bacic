@@ -10,7 +10,6 @@ class KorisnikFactory(DjangoModelFactory):
 
     korisnik_ime = factory.Faker("first_name")
     korisnik_datum_rodenja = factory.Faker("date_of_birth")
-    korisnik_id = factory.Faker("random_int")
     korisnik_mail = factory.Faker("email")
 
 class TrenerFactory(DjangoModelFactory):
@@ -18,7 +17,6 @@ class TrenerFactory(DjangoModelFactory):
         model = Trener
 
     trener_ime = factory.Faker("first_name")
-    trener_id = factory.Faker("random_int")
 
 class TreningFactory(DjangoModelFactory):
     class Meta:

@@ -4,6 +4,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from main.models import Trener, Korisnik, Trening
 
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.urls import reverse_lazy
+from .forms import KorisnikForm
+
 # Create your views here.
 def homepage(request):
     return HttpResponse('Dobrodošli na početnu stranicu <strong> GymSpace </strong> teretane!')
@@ -52,3 +56,25 @@ def svi_treninzi(request):
     context = {'treninzi': treninzi}
 
     return render(request, 'treninzi.html', context=context)
+
+class KorisnikCreateView(CreateView):
+    model = Korisnik
+    form_class = KorisnikForm
+    template_name = 'dodaj_korisnika.html'
+    success_url = reverse_lazy('main:korisnici')
+
+class KorisnikDeleteView(DeleteView):
+    model = Korisnik
+    template_name = 'delete_korisnik.html'
+    success_url = reverse_lazy('main:korisnici')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['korisnik']=self.get_object()
+        return context
+    
+class KorisnikUpdateView(UpdateView):
+    model = Korisnik
+    form_class = KorisnikForm
+    template_name = 'update_korisnik.html'
+    success_url = reverse_lazy('main:korisnici')
