@@ -8,6 +8,8 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from .forms import KorisnikForm
 
+from django.views.generic import ListView
+
 # Create your views here.
 def homepage(request):
     return HttpResponse('Dobrodošli na početnu stranicu <strong> GymSpace </strong> teretane!')
@@ -50,6 +52,9 @@ def svi_korisnici(request):
     return render(request, 'korisnici.html', context=context)
 
 
+
+
+
 def svi_treninzi(request):
     treninzi = Trening.objects.all()
 
@@ -78,3 +83,4 @@ class KorisnikUpdateView(UpdateView):
     form_class = KorisnikForm
     template_name = 'update_korisnik.html'
     success_url = reverse_lazy('main:korisnici')
+

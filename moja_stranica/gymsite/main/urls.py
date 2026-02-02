@@ -1,6 +1,11 @@
 from django.urls import path, include
 from . import views
 
+from django.views.generic import ListView
+from main.models import *
+
+from main.views import *
+
 app_name = 'main'
 
 urlpatterns = [

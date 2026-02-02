@@ -11,7 +11,6 @@ class TestViews(TestCase):
 
         self.trener1 = Trener.objects.create(
             trener_ime = "neki-trener",
-            trener_id = "TestniId"
         )
 
     def test_project_index_GET(self):
