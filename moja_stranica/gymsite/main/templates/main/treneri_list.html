@@ -1,0 +1,30 @@
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/html/styles.css">
+    <title>Lista trenera</title>
+</head>
+
+{% block content %}
+    <h2>Treneri</h2>
+    <ul>
+        {% for trener in object_list %}
+            <li>
+                Ime: {{ trener.trener_ime }}<br>
+                e-mail: {{trener.trener_mail}} <br>
+            </li>
+            <a href="{% url 'main:update_trenera' trener.pk %}">Update</a>
+            <a href="{% url 'main:obrisi_trenera' trener.pk %}">Delete</a>
+            {% empty %}
+        <li>Nema registriranih trenera.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+<a href="{% url 'main:index' %}">
+    <button>Nazad</button>
+</a>
+
+
+<form method="post" action="{% url 'main:dodaj_trenera' %}" style="display:inline-block;">
+        {% csrf_token %}
+        <button type="submit">Dodaj trenera</button>
+</form>

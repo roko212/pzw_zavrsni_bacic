@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/html/styles.css">
+    <title>Obriši trenera</title>
+</head>
+<body>
+    <h1>Obrisi trenera</h1>
+    <p>Zelite li sigurno obrisati trenera "{{ object }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Confirm Delete">
+    </form>
+</body>
+</html>

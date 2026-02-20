@@ -2,11 +2,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
-from main.models import Trener, Korisnik, Trening
+from main.models import *
 
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
-from .forms import KorisnikForm
+from .forms import *
 
 from django.views.generic import ListView
 
@@ -37,30 +37,22 @@ def register(request):
 
     return render(request, 'registration/register.html', context)
 
-def svi_treneri(request):
-    treneri = Trener.objects.all()
-
-    context = {'treneri': treneri}
-
-    return render(request, 'treneri.html', context=context)
-
-def svi_korisnici(request):
-    korisnici = Korisnik.objects.all()
-
-    context = {'korisnici': korisnici}
-
-    return render(request, 'korisnici.html', context=context)
 
 
+class TreneriList(ListView):
+    model = Trener
+    template_name = 'main/treneri_list.html'
+    context_object_name = 'treneri'
 
+class KorisniciList(ListView):
+    model = Korisnik
+    template_name = 'main/korisnici_list.html'
+    context_object_name = 'korisnici'
 
-
-def svi_treninzi(request):
-    treninzi = Trening.objects.all()
-
-    context = {'treninzi': treninzi}
-
-    return render(request, 'treninzi.html', context=context)
+class TreninziList(ListView):
+    model = Trening
+    template_name = 'main/treninzi_list.html'
+    context_object_name = 'treninzi'
 
 class KorisnikCreateView(CreateView):
     model = Korisnik
@@ -84,3 +76,46 @@ class KorisnikUpdateView(UpdateView):
     template_name = 'update_korisnik.html'
     success_url = reverse_lazy('main:korisnici')
 
+class TrenerCreateView(CreateView):
+    model = Trener
+    form_class = TrenerForm
+    template_name = 'dodaj_trenera.html'
+    success_url = reverse_lazy('main:treneri')
+
+class TrenerUpdateView(UpdateView):
+    model = Trener
+    form_class = TrenerForm
+    template_name = 'update_trenera.html'
+    success_url = reverse_lazy('main:treneri')
+
+class TrenerDeleteView(DeleteView):
+    model = Trener
+    template_name = 'delete_trener.html'
+    success_url = reverse_lazy('main:treneri')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['trener'] = self.get_object()
+        return context
+    
+class TreningCreateView(CreateView):
+    model = Trening
+    form_class = TreningForm
+    template_name = 'dodaj_trening.html'
+    success_url = reverse_lazy('main:treninzi')
+
+class TreningUpdateView(UpdateView):
+    model = Trening
+    form_class = TreningForm
+    template_name = 'update_trening.html'
+    success_url = reverse_lazy('main:treninzi')
+
+class TreningDeleteView(DeleteView):
+    model = Trening
+    template_name = 'delete_trening.html'
+    success_url = reverse_lazy('main:treninzi')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['trening'] = self.get_object()
+        return context

@@ -9,6 +9,7 @@
         Ime: {{k.korisnik_ime}}<br>
         Datum rodenja: {{k.korisnik_datum_rodenja}}<br>
         e-mail: {{k.korisnik_mail}}<br>
+        Trening: {{k.korisnik_trening}}<br>
         <a href="{% url 'main:update_korisnika' k.pk %}">Update</a>
         <a href="{% url 'main:obrisi_korisnika' k.pk %}">Delete</a>
     </li>
@@ -17,9 +18,12 @@
     {% endfor %}
 </ul>
 
-<button onclick="history.back()">Nazad</button>
+<a href="{% url 'main:index' %}">
+    <button>Nazad</button>
+</a>
+
 
 <form method="post" action="{% url 'main:dodaj_korisnika' %}" style="display:inline-block;">
         {% csrf_token %}
         <button type="submit">Dodaj korisnika</button>
-    </form>
+</form>

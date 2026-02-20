@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/html/styles.css">
+    <title>Update trening</title>
+</head>
+<body>
+    <h1>Update trening</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update trening</button>
+    </form>
+</body>
+</html>

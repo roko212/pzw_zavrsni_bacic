@@ -12,10 +12,20 @@
         Opis: {{t.trening_opis}}<br>
         Trener: {{t.trening_trener}}<br>
         Termin: {{t.trening_termin}}<br>
+
+        <a href="{% url 'main:update_trening' t.pk %}">Update</a>
+        <a href="{% url 'main:obrisi_trening' t.pk %}">Delete</a>
     </li>
     {% empty %}
         <li>Nema dodanih treninga.</li>
     {% endfor %}
 </ul>
 
-<button onclick="history.back()">Nazad</button>
+<a href="{% url 'main:index' %}">
+    <button>Nazad</button>
+</a>
+
+<form method="post" action="{% url 'main:dodaj_trening' %}" style="display:inline-block;">
+        {% csrf_token %}
+        <button type="submit">Dodaj trening</button>
+</form>
